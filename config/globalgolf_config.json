@@ -1,0 +1,5 @@
+{
+  "base_url": "https://www.globalgolf.com/golf-clubs/driver/?pg={page}",
+  "max_pages": 10,
+  "wait_time": 3
+}

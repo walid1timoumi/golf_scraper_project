@@ -1,0 +1,8 @@
+flask
+selenium
+gspread
+google-auth
+sendgrid
+pandas
+python-dotenv
+webdriver-manager

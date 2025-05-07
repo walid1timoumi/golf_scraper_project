@@ -1,0 +1,9 @@
+{
+  "base_url": "https://www.globalgolf.com/golf-clubs/?pg={page}",
+  "wait_time": 20,
+  "headless": true,
+  "chrome_binary": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+  "chromedriver_path": "C:/webdrivers/chromedriver.exe",
+  "csv_filename": "backup.csv",
+  "sheet_name": "Golf Clubs Scraped"
+}

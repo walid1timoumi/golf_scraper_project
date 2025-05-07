@@ -1,0 +1,5 @@
+﻿__pycache__/
+.env
+services/creds.json
+*.pyc
+.DS_Store

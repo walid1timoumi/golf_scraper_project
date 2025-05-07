@@ -1,0 +1,7 @@
+{
+  "base_url": "https://www.rockbottomgolf.com/golf-clubs/drivers/",
+  "wait_time": 4,
+  "csv_filename": "rockbottom_drivers.csv",
+  "sheet_name": "RockBottom Drivers",
+  "max_pages": 50
+}
