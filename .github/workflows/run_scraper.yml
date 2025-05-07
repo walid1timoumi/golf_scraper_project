@@ -1,7 +1,7 @@
 name: Run Golf Scraper
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Every 5 mn
+    - cron: '*/10 * * * *'  # Every 5 mn
   workflow_dispatch:
 
 jobs:
@@ -44,4 +44,4 @@ jobs:
         TO_EMAIL: ${{ secrets.TO_EMAIL }}
         GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
       run: |
-        python main.py
+        python main.py# Trigger schedule refresh
