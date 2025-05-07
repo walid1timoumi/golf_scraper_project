@@ -3,3 +3,4 @@
 services/creds.json
 *.pyc
 .DS_Store
+GOOGLE_CREDENTIALS_JSON

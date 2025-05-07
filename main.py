@@ -3,7 +3,6 @@ import os
 import json
 import time
 from pathlib import Path
-from concurrent.futures import ThreadPoolExecutor
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -54,13 +53,22 @@ def create_driver():
     
     # Use WebDriver Manager for automatic driver handling
     service = Service(ChromeDriverManager().install())
-    return webdriver.Chrome(service=service, options=options)
+    driver = webdriver.Chrome(service=service, options=options)
+    
+    # Set reasonable timeouts
+    driver.set_page_load_timeout(30)
+    driver.implicitly_wait(5)
+    return driver
 
 def scrape_site(site_name):
-    driver = create_driver()
+    driver = None
     try:
+        driver = create_driver()
         config = load_config(site_name)
         print(f"\n=== Starting {site_name} scrape ===")
+        
+        start_time = time.time()
+        
         if site_name == "globalgolf":
             results = parse_globalgolf(driver, config)
         elif site_name == "rockbottom":
@@ -68,25 +76,32 @@ def scrape_site(site_name):
         else:
             results = []
         
+        duration = time.time() - start_time
         print(f"✅ {site_name} scraping complete. Products: {len(results) if results else 0}")
+        print(f"⏱️  Scraping took {duration:.2f} seconds")
         return results
     except Exception as e:
         print(f"❌ Error scraping {site_name}: {str(e)}")
         return []
     finally:
-        driver.quit()
+        if driver:
+            driver.quit()
 
 def format_raw_data(products: list, source: str) -> list:
     formatted = []
     for product in products:
-        if source == "globalgolf" and len(product) == 6:
-            page, name, price, brand, url, offer = product
-            formatted.append([source, page, name, price, brand, url, offer])
-        elif source == "rockbottom" and len(product) == 6:
-            page, name, price, brand, url, offer = product
-            formatted.append([source, page, name, price, brand, url, offer])
-        else:
-            formatted.append([source] + product)
+        try:
+            if source == "globalgolf" and len(product) == 6:
+                page, name, price, brand, url, offer = product
+                formatted.append([source, page, name, price, brand, url, offer])
+            elif source == "rockbottom" and len(product) == 6:
+                page, name, price, brand, url, offer = product
+                formatted.append([source, page, name, price, brand, url, offer])
+            else:
+                formatted.append([source] + product)
+        except Exception as e:
+            print(f"⚠️ Error formatting product {product}: {e}")
+            continue
     return formatted
 
 def main():
@@ -94,16 +109,10 @@ def main():
         sites_to_scrape = ["globalgolf", "rockbottom"]
         results = {}
         
-        with ThreadPoolExecutor(max_workers=2) as executor:
-            futures = {executor.submit(scrape_site, site): site for site in sites_to_scrape}
-            
-            for future in futures:
-                site = futures[future]
-                try:
-                    results[site] = future.result()
-                except Exception as e:
-                    print(f"⚠️ Thread error for {site}: {e}")
-                    results[site] = []
+        # Scrape sites sequentially
+        for site in sites_to_scrape:
+            results[site] = scrape_site(site)
+            time.sleep(5)  # Add delay between scrapers
 
         # Debug output
         print("\n=== Scraping Results Summary ===")
@@ -143,6 +152,9 @@ def main():
         sheet_url = f"https://docs.google.com/spreadsheets/d/{os.getenv('GOOGLE_SHEET_ID')}"
         content = f"""✅ Golf clubs scraping finished successfully.
 📊 Total products scraped: {len(all_products)}
+📋 Results:
+- GlobalGolf: {len(results.get('globalgolf', []))} products
+- RockBottom: {len(results.get('rockbottom', []))} products
 📄 View Google Sheet: {sheet_url}"""
         
         send_email(subject, content)
