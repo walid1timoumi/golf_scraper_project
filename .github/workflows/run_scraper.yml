@@ -44,4 +44,4 @@ jobs:
         TO_EMAIL: ${{ secrets.TO_EMAIL }}
         GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
       run: |
-        python main.py# Trigger schedule refresh
+        python main.py Trigger schedule refresh
