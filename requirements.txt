@@ -6,3 +6,4 @@ sendgrid
 pandas
 python-dotenv
 webdriver-manager
+beautifulsoup4
