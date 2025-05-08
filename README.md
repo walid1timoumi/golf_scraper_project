@@ -18,6 +18,14 @@ This project automatically scrapes golf club listings from two major retailers �
 
 ---
 
+## 🎥 Demo Video
+
+[![Click to watch the demo](https://raw.githubusercontent.com/walid1timoumi/golf_scraper_project/main/demo_screenshot.png)](https://github.com/walid1timoumi/golf_scraper_project/releases/download/v1.0/golfscraper.mp4)
+
+> 📽️ Full automation in action — scraping, analyzing, and exporting to Google Sheets with email reports.
+
+---
+
 ## 📁 Project Structure
 
 ```
@@ -121,4 +129,3 @@ Sourcing Specialist & Automation Developer
 ---
 
 > 🤖 Built with ❤️ by Walid — Automated, analyzed, and production-ready.
-
