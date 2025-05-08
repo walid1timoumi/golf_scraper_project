@@ -112,12 +112,13 @@ Configure via GitHub secrets:
 
 ## 👤 Author
 
-**Walid Timoumi**  
+### Walid Timoumi  
 Sourcing Specialist & Automation Developer  
-🔗 [LinkedIn](https://linkedin.com/in/your-link) • 🛠️ [Upwork Profile](https://www.upwork.com/freelancers/your-link)
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://linkedin.com/in/your-link)  
+[![Upwork](https://img.shields.io/badge/Upwork-Freelancer-success?logo=upwork)](https://www.upwork.com/freelancers/your-link)
 
 ---
 
-## 📄 License
+> 🤖 Built with ❤️ by Walid — Automated, analyzed, and production-ready.
 
-MIT License
