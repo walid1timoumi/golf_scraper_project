@@ -1,7 +1,7 @@
 name: Run Golf Scraper
 on:
   schedule:
-    - cron: '*/10 * * * *'  # Every 5 mn
+    - cron: '0 0 */3 * *'  # Every 3 days
   workflow_dispatch:
 
 jobs:
