@@ -20,9 +20,10 @@ This project automatically scrapes golf club listings from two major retailers �
 
 ## 🎥 Demo Video
 
-[![Click to watch the demo](https://raw.githubusercontent.com/walid1timoumi/golf_scraper_project/main/demo_screenshot.png)](https://github.com/walid1timoumi/golf_scraper_project/releases/download/v1.0/golfscraper.mp4)
+[![Watch the demo](https://img.youtube.com/vi/8FsjIRTiMZM/0.jpg)](https://youtu.be/8FsjIRTiMZM)
 
-> 📽️ Full automation in action — scraping, analyzing, and exporting to Google Sheets with email reports.
+> 📽️ See the full automation pipeline in action — scraping golf listings, analyzing them, exporting to Google Sheets, and sending email reports.
+
 
 ---
 
